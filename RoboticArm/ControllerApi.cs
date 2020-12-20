@@ -81,7 +81,6 @@ namespace RoboticArm
             }
 
             var timing = GetTiming(paramsQuery);
-            System.Diagnostics.Debug.WriteLine($"Motor {motorNum}, Timing {timing}");
             _motors[motorNum].Up(timing);
             e.Context.Response.ContentLength64 = 0;
             WebServer.OutputHttpCode(e.Context.Response, HttpStatusCode.OK);
@@ -103,7 +102,6 @@ namespace RoboticArm
             }
 
             var timing = GetTiming(paramsQuery);
-            System.Diagnostics.Debug.WriteLine($"Motor {motorNum}, Timing {timing}");
             _motors[motorNum].Down(timing);
             e.Context.Response.ContentLength64 = 0;
             WebServer.OutputHttpCode(e.Context.Response, HttpStatusCode.OK);

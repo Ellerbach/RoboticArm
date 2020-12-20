@@ -1,6 +1,4 @@
 ﻿using nanoFramework.WebServer;
-using System;
-using System.Text;
 
 namespace RoboticArm
 {
@@ -54,6 +52,4 @@ namespace RoboticArm
             WebServer.OutPutStream(e.Context.Response, Resources.GetString(Resources.StringResources.page));
         }
     }
-
-
 }
