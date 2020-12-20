@@ -1,0 +1,27 @@
+﻿<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <marker orient="auto" markerHeight="5" markerWidth="5" markerUnits="strokeWidth" refY="50" refX="50" viewBox="0 0 100 100" id="se">
+      <path d="m100,50l-100,40l30,-40l-30,-40l100,40z" stroke-width="10" stroke="#000000" fill="#000000" id="s12"/>
+    </marker>
+  </defs>
+  <g>
+    <line y2="155" x2="323" y1="389" x1="323" stroke-width="10" stroke="#000000" id="s2"/>
+    <rect height="64" width="156" y="390" x="245" stroke-width="5" stroke="#000000" fill="#ff0000" id="s1" onclick="btn('MS?p=1')"/>
+    <circle r="14" cy="374" cx="323" stroke-width="8" stroke="#000000" fill="#ff0000" id="s6" onclick="btn('MS?p=2')"/>
+    <circle r="14" cy="220" cx="323" stroke-width="8" stroke="#000000" fill="#ff0000" id="s7" onclick="btn('MS?p=4')"/>
+    <circle r="14" cy="297" cx="323" stroke-width="8" stroke="#000000" fill="#ff0000" id="s8" onclick="btn('MS?p=3')"/>
+    <line y2="100" x2="292" y1="156" x1="322" stroke-width="5" stroke="#000000" id="s9"/>
+    <line y2="100" x2="318" y1="156" x1="348" transform="rotate(45 333 126)" stroke-width="5" stroke="#000000" id="s10"/>
+    <line y2="337" x2="445" y1="337" x1="357" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s3" onclick="btn('MU?p=2')"/>
+    <line y2="262" x2="445" y1="262" x1="357" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s4" onclick="btn('MU?p=3')"/>
+    <line y2="178" x2="445" y1="178" x1="357" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s5" onclick="btn('MU?p=4')"/>
+    <line y2="422" x2="504" y1="422" x1="416" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s11" onclick="btn('MU?p=1')"/>
+    <line y2="337" x2="288" y1="337" x1="200" transform="rotate(180 244.5 337)" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s13" onclick="btn('MD?p=2')"/>
+    <line y2="262" x2="284" y1="262" x1="196" transform="rotate(180 240.5 262)" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s14" onclick="btn('MD?p=3')"/>
+    <line y2="178" x2="286" y1="178" x1="198" transform="rotate(180 242.5 178)" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s15" onclick="btn('MD?p=4')"/>
+    <line y2="422" x2="226" y1="422" x1="138" transform="rotate(180 182.5 422)" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s16" onclick="btn('MD?p=1')"/>
+    <line y2="99" x2="442" y1="99" x1="354" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s17" onclick="btn('MU?p=5&amp;t=800')"/>
+    <line y2="99" x2="283" y1="99" x1="195" transform="rotate(180 239 99)" stroke-width="8" stroke="#000000" marker-end="url('#se')" id="s18" onclick="btn('MD?p=5&amp;t=800')"/>
+    <script xlink:href="script.js" />
+  </g>
+</svg>
