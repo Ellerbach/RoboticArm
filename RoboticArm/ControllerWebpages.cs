@@ -26,7 +26,7 @@ namespace RoboticArm
         public void Script(WebServerEventArgs e)
         {
             e.Context.Response.ContentType = "text/javascript";
-            WebServer.OutPutStream(e.Context.Response, Resources.GetString(Resources.StringResources.script));
+            WebServer.OutputAsStream(e.Context.Response, Resources.GetString(Resources.StringResources.script));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace RoboticArm
         public void Default(WebServerEventArgs e)
         {
             e.Context.Response.ContentType = "text/html";
-            WebServer.OutPutStream(e.Context.Response, Resources.GetString(Resources.StringResources.page));
+            WebServer.OutputAsStream(e.Context.Response, Resources.GetString(Resources.StringResources.page));
         }
     }
 }

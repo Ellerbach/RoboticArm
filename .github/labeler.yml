@@ -1,0 +1,26 @@
+dependency update:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/packages.config"
+          - "**/*.nfproj"
+          - "**/app.config"
+
+code:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "RoboticArm/**/*.cs"
+          - "RoboticArm/**/*.resx"
+          - "RoboticArm/Resources/**"
+
+cicd:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - ".github/dependabot.yml"
+          - ".github/labeler.yml"
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "docs/**"

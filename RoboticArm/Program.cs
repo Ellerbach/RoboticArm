@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Diagnostics;
-using Windows.Devices.WiFi;
+using System.Device.Wifi;
 using nanoFramework.Networking;
 using nanoFramework.WebServer;
 using System.Net;
@@ -23,7 +23,7 @@ namespace RoboticArm
                 int connectRetry = 0;
 
                 // Get the first WiFI Adapter
-                WiFiAdapter wifi = WiFiAdapter.FindAllAdapters()[0];
+                WifiAdapter wifi = WifiAdapter.FindAllAdapters()[0];
                 Debug.WriteLine("Getting wifi adaptor");
 
                 wifi.AvailableNetworksChanged += WifiAvailableNetworksChanged;
@@ -97,7 +97,7 @@ namespace RoboticArm
             }
         }
 
-        private static void WifiAvailableNetworksChanged(WiFiAdapter sender, object e)
+        private static void WifiAvailableNetworksChanged(WifiAdapter sender, object e)
         {
             var wifiNetworks = sender.NetworkReport.AvailableNetworks;
             foreach (var net in wifiNetworks)
@@ -112,10 +112,10 @@ namespace RoboticArm
                         Thread.Sleep(3000);
                     }
                     // Connect to network
-                    WiFiConnectionResult result = sender.Connect(net, WiFiReconnectionKind.Automatic, MyPassword);
+                    WifiConnectionResult result = sender.Connect(net, WifiReconnectionKind.Automatic, MyPassword);
 
                     // Display status
-                    if (result.ConnectionStatus == WiFiConnectionStatus.Success)
+                    if (result.ConnectionStatus == WifiConnectionStatus.Success)
                     {
                         Debug.WriteLine($"Connected to Wifi network {net.Ssid}");
                         _isConnected = true;

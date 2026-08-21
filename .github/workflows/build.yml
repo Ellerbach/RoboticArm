@@ -1,0 +1,57 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install nanoFramework Visual Studio extension
+        shell: pwsh
+        run: |
+          $vsixPath = Join-Path $env:RUNNER_TEMP "nanoFramework.vsix"
+          Invoke-WebRequest `
+            -Uri "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/nanoframework/vsextensions/nanoFramework-VS2022-Extension/latest/vspackage" `
+            -OutFile $vsixPath
+
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $installationPath = & $vswhere -latest -products Microsoft.VisualStudio.Product.Enterprise -requires Microsoft.Component.MSBuild -property installationPath
+          if (-not $installationPath) {
+            throw "Visual Studio with MSBuild was not found."
+          }
+
+          $vsixInstaller = Join-Path $installationPath "Common7\IDE\VSIXInstaller.exe"
+          $process = Start-Process $vsixInstaller -ArgumentList "/quiet", $vsixPath -Wait -PassThru
+          if ($process.ExitCode -ne 0) {
+            throw "nanoFramework VSIX installation failed with exit code $($process.ExitCode)."
+          }
+
+          $msbuildPath = Join-Path $installationPath "MSBuild\Current\Bin"
+          $msbuildPath | Out-File -FilePath $env:GITHUB_PATH -Append
+
+      - name: Set up NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore packages
+        run: nuget restore RoboticArm.sln -Source https://api.nuget.org/v3/index.json -NonInteractive
+
+      - name: Build
+        run: msbuild RoboticArm.sln /t:Rebuild /p:Configuration=Release /m /v:minimal
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: robotic-arm-release
+          path: RoboticArm/bin/Release/
+          if-no-files-found: error

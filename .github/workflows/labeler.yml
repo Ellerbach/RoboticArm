@@ -1,0 +1,38 @@
+name: Pull Request Labels
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create missing labels
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mapfile -t existing_labels < <(gh label list --limit 1000 --json name --jq '.[].name')
+
+          labels=(
+            "dependency update|0366d6|Dependency and package updates"
+            "code|0e8a16|Application code changes"
+            "cicd|d93f0b|Continuous integration and delivery changes"
+            "documentation|5319e7|Documentation changes"
+          )
+
+          for label in "${labels[@]}"; do
+            IFS="|" read -r name color description <<< "$label"
+            if ! printf '%s\n' "${existing_labels[@]}" | grep -Fxq "$name"; then
+              gh label create "$name" --color "$color" --description "$description"
+            fi
+          done
+
+      - name: Apply labels
+        uses: actions/labeler@v6

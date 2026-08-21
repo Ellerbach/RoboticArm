@@ -36,7 +36,6 @@ namespace nanoFramework.Networking
                 // get the first interface
                 NetworkInterface ni = nis[0];
 
-                ni.EnableAutomaticDns();
                 ni.EnableDhcp();
 
                 // check if we have an IP
