@@ -41,7 +41,7 @@ jobs:
           $msbuildPath | Out-File -FilePath $env:GITHUB_PATH -Append
 
       - name: Set up NuGet
-        uses: NuGet/setup-nuget@v2
+        uses: NuGet/setup-nuget@v4
 
       - name: Restore packages
         run: nuget restore RoboticArm.sln -Source https://api.nuget.org/v3/index.json -NonInteractive
