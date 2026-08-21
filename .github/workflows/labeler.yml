@@ -1,8 +1,9 @@
 name: Pull Request Labels
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -36,4 +37,5 @@ jobs:
           done
 
       - name: Apply labels
+        if: github.event_name == 'pull_request_target'
         uses: actions/labeler@v6
