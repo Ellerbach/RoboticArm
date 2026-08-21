@@ -1,7 +1,7 @@
 name: Pull Request Labels
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -17,6 +17,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
         run: |
           mapfile -t existing_labels < <(gh label list --limit 1000 --json name --jq '.[].name')
 
