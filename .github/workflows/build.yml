@@ -50,7 +50,7 @@ jobs:
         run: msbuild RoboticArm.sln /t:Rebuild /p:Configuration=Release /m /v:minimal
 
       - name: Upload build output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: robotic-arm-release
           path: RoboticArm/bin/Release/
